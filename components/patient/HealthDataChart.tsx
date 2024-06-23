@@ -1,10 +1,23 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-// ... your interfaces (HealthData and HealthDataChartProps) 
+// Define the structure of your data coming from Supabase
+interface HealthData { 
+  created_at: string; 
+  // ...other properties from your diagnoses data 
+}
+
+// Define the props for the HealthDataChart component
+interface HealthDataChartProps {
+  data: HealthData[]; 
+}
 
 const HealthDataChart: React.FC<HealthDataChartProps> = ({ data }) => {
-  // ... data transformation logic
+  // Example data transformation 
+  const chartData = data.map((item: HealthData) => ({
+    name: new Date(item.created_at).toLocaleDateString(), // Extract date 
+    value: 1, // You'll likely calculate a value based on your data
+  }));
 
   return (
     <BarChart width={600} height={300} data={chartData}> 
