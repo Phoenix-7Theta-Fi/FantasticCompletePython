@@ -1,4 +1,4 @@
-import { GoogleApi } from '@google/generative-ai'; // Correct import 
+import { GoogleApi } from '@google/generativeai'; // Correct import 
 
 const apiKey = process.env.GEMINI_API_KEY;
 
