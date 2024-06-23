@@ -1,34 +1,32 @@
-import type { NextPage } from 'next'
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import AuthForm from '../components/AuthForm'
-import { useSession, signIn, signOut } from 'next-auth/react'
+import type { NextPage } from 'next';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import AuthForm from '../components/AuthForm';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import Link from 'next/link'; // Import Link
 
 const Home: NextPage = () => {
-  const { data: session } = useSession()
-  const router = useRouter()
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const handleLogin = async (email, password) => {
-    // Implement your authentication logic here
-    // Using Supabase Auth for example
     try {
       const { error } = await signIn('credentials', {
         email,
         password,
         redirect: false
-      })
+      });
 
       if (error) {
-        // Handle login error
-        console.error(error)
-        return
+        console.error(error);
+        return;
       }
 
-      router.push('/patient') // Redirect to patient portal after login
+      router.push('/patient'); // Redirect after login (adjust as needed)
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <div>
@@ -40,8 +38,10 @@ const Home: NextPage = () => {
           <button onClick={() => signOut()}>Logout</button>
         </div>
       )}
+      {/* Example Link (adjust as needed) */}
+      {!session && <Link href="/about">Learn More</Link>} 
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link'; // For linking to patient details (if needed)
+import Link from 'next/link';
 
 interface Patient {
   id: number;
@@ -16,8 +16,8 @@ const PatientList: React.FC<PatientListProps> = ({ patients }) => {
     <ul>
       {patients.map((patient) => (
         <li key={patient.id}>
-          <Link href={`/doctor/patients/${patient.id}`}> {/* Example: Link to patient details page */}
-            {patient.name}
+          <Link href={`/doctor/patients/${patient.id}`}> 
+            {patient.name} 
           </Link>
         </li>
       ))}
