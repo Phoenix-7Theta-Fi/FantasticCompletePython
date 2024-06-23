@@ -1,31 +1,25 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-interface DataPoint {
-  name: string; // Date or any category for the X-axis 
-  value: number; 
+// Define the structure of your data coming from Supabase
+interface HealthData { 
+  created_at: string; 
+  // ...other properties from your diagnoses data 
 }
 
 interface HealthDataChartProps {
-  data: DataPoint[]; 
+  data: HealthData[]; 
 }
 
 const HealthDataChart: React.FC<HealthDataChartProps> = ({ data }) => {
-  // Example data transformation (you'll likely get data in a different format)
-  const chartData = data.map((item) => ({
-    name: new Date(item.created_at).toLocaleDateString(), // Example: Extract date from 'created_at'
-    value: 1, // Example: Assuming each diagnosis represents 1 occurrence
+  // Example data transformation 
+  const chartData = data.map((item: HealthData) => ({
+    name: new Date(item.created_at).toLocaleDateString(), // Extract date 
+    value: 1, // You'll likely calculate a value based on your data
   }));
 
   return (
-    <BarChart width={600} height={300} data={chartData}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="value" fill="#8884d8" />
-    </BarChart>
+    // ... your Recharts setup (no changes needed here) 
   );
 };
 
